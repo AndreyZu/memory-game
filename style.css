@@ -1,0 +1,172 @@
+html{
+    font-family: Arial, Helvetica, sans-serif;
+}
+body{
+    color: #434344;
+    background: #CFD0CF;
+    margin: 0;
+}
+.game{
+    min-width: 595px;
+}
+.game__header{
+    text-align: center;
+    line-height: 47px;
+    font-size: 42px;
+
+    margin: 40px 0;
+}
+.game__field{
+    width: 595px;
+    height: 595px;
+    margin: auto;
+
+    display: flex;
+    justify-content: space-between;
+    align-content: space-between;
+    flex-wrap: wrap;
+
+    perspective: 600px;
+}
+.game__card{
+    width: 130px;
+    height: 130px;
+    box-sizing: border-box;
+
+    text-align: center;
+    line-height: 130px;
+    font-size: 55px; /* Высота символа соответствует 75px */
+
+    background: #fff;
+    border-radius: 9px;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+
+    transform-style: preserve-3d;
+    backface-visibility: visible;
+    transform: rotateY(180deg) translateZ(1px);
+    transition: transform .3s linear;
+    cursor: pointer;
+}
+.game__card:after{
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background: linear-gradient(315deg, #22AB93, #19668D);
+    border: 5px solid #fff;
+    border-radius: 9px;
+
+    transform: translateZ(-1px);
+}
+.open,
+.find,
+.error{
+    transform: rotateY(0deg) translateZ(1px);
+}
+.find{
+    background: #5AD66F;
+}
+.error{
+    background: #F44336;
+}
+.game__timer{
+    text-align: center;
+    line-height: 36px;
+    font-size: 32px;
+    font-weight: 700;
+
+    margin-top: 30px;
+}
+.window{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0,0,0,.8);
+}
+.window__modal{
+    box-sizing: border-box;
+    min-width: 350px;
+    padding: 30px;
+
+    text-align: center;
+
+    background-color: #FFF;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, .5);
+}
+.window__header{
+    font-size: 48px;
+    font-weight: 700;
+}
+
+.window__letter{
+    display: inline-block;
+    transform-origin: 0 100%;
+}
+.window__letter_1{
+    animation: 1s linear 0s infinite alternate letter_scale;
+}
+.window__letter_2{
+    animation: 1s linear .2s infinite alternate letter_scale;
+}
+.window__letter_3{
+    animation: 1s linear .4s infinite alternate letter_scale;
+}
+.window__letter_4{
+    animation: 1s linear .6s infinite alternate letter_scale;
+}
+.window__letter_5{
+    animation: 1s linear .8s infinite alternate letter_scale;
+}
+@keyframes letter_scale{
+    0% {transform: scaleY(1)}
+    50% {transform: scaleY(.5)}
+    100%{transform: scaleY(1)}
+}
+
+.window__button{
+    font-size: 20px;
+    margin-top: 40px;
+    height: 40px;
+    padding: 0 30px;
+
+    border: none;
+    border-radius: 9px;
+
+    background: linear-gradient(315deg, #22AB93, #19668D);
+    color: #FFF;
+    box-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+    cursor: pointer;
+}
+.window__button:active{
+    box-shadow: inset 2px 1px 8px rgba(0,0,0,0.5);
+}
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    /*IE11 style*/
+    .game__card{
+        -ms-transform: rotateY(180deg) translateZ(1px);
+    }
+    .game__card:after{
+        -ms-transform: translateZ(-1px);
+    }
+    .open,
+    .find,
+    .error{
+        -ms-transform: rotateY(0deg) translateZ(1px);
+    }
+    .game__card.open:after,
+    .game__card.error:after,
+    .game__card.find:after{
+        opacity: 0;
+        transition: opacity .3s linear;
+    }
+}
